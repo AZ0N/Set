@@ -16,9 +16,7 @@ public class BoardManager : MonoBehaviour
     {
         GenerateDeck();
         ShuffleDeck();
-
         PopulateBoard();
-        PrintBoard();
     }
 
     //General board operations
