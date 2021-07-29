@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class CardData
 {
     short attributes;
-
     public CardData(int colorShift, int shapeShift, int amountShift, int fillShift)
     {
         //Check if the argument passed to the constructor are valid.
@@ -17,8 +17,7 @@ public class CardData
         attributes = (short)((1 << (colorShift + 9)) | (1 << (shapeShift + 6)) | (1 << (amountShift + 3)) | (1 << fillShift));
     }
 
-    //Debugging method to check card bits
-    public void PrintCardBits()
+    public void PrintCardBits() //Debugging method to check card bits
     {
         string bitString = string.Empty;
 
@@ -30,6 +29,29 @@ public class CardData
                 bitString += "0";
         }
 
-        Debug.Log($"CardData: {bitString}");
+        Debug.Log(bitString);
+    }
+    public void PrintCardAttributes() //Debugging method easily identifying attributes
+    {
+        string attributeString = string.Empty;
+        
+        for (int i = 3; i >= 0; i--)
+        {
+            switch ((attributes >> (i * 3)) & 0b111)
+            {
+                case 0b001:
+                    attributeString += "A";
+                    break;
+                case 0b010:
+                    attributeString += "B";
+                    break;
+                case 0b100:
+                    attributeString += "C";
+                    break;
+                default:
+                    break;
+            }
+        }
+        Debug.Log(attributeString);
     }
 }
