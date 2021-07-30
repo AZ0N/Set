@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     private void Start() 
     {
+        //Setup game data and draw cards to screen
         boardManager.SetupGame();
         boardUI.PopulateGrid(boardManager.board);    
     }

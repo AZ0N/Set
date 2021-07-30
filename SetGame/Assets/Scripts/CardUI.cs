@@ -27,11 +27,13 @@ public class CardUI : MonoBehaviour
 
     public void DrawIcons(Sprite icon, int amount) 
     {
+        //Start by removing any existing icons, for redrawing cards
         foreach (Transform child in transform) 
         {
             Destroy(child.gameObject);
         }
 
+        //Instantiate the correct amount of icons and set their sprite
         for (int i = 0; i < amount; i++)
         {
             GameObject iconObject = Instantiate(iconPrefab, transform);

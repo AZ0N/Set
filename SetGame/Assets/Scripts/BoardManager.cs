@@ -14,18 +14,18 @@ public class BoardManager : MonoBehaviour
     private System.Random rng = new System.Random();
 
     //General board operations
+    public void SetupGame() 
+    {
+        GenerateDeck();
+        ShuffleDeck();
+        PopulateBoard();
+    }
     public void PopulateBoard()
     {
         for (int i = 0; i < baseBoardSize; i++)
         {
             board.Add(PopCardFromDeck());
         }
-    }
-    public void SetupGame() 
-    {
-        GenerateDeck();
-        ShuffleDeck();
-        PopulateBoard();
     }
     
     //Deck operations
