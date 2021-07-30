@@ -4,16 +4,56 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameType 
+    {
+        SinglePlayer,
+        Versus,
+        Multiplayer
+    }
+
     [Header("Gameobject References")]
     public BoardManager boardManager;
-    public BoardUI boardUI;
+    public GameObject boardGameobject;
+    public GameObject gameTypeSelection;
+    private GameType gameType;
 
     private void Start() 
     {
-        //Setup game data and draw cards to screen
+        boardGameobject.SetActive(false);
+        gameTypeSelection.SetActive(true);    
+    }
+    private void StartGame() 
+    {
+        gameTypeSelection.SetActive(false);
+        boardGameobject.SetActive(true);
+
         boardManager.SetupGame();
-        boardUI.PopulateGrid(boardManager.board);
-        Debug.Log(boardManager.BoardHasSets());
+        BoardUI.instance.PopulateGrid(boardManager.board);
+
+        if(gameType == GameType.SinglePlayer)
+            BoardUI.instance.SetButtonInteractable(true);
+        else
+            BoardUI.instance.SetButtonInteractable(false);
+        
         boardManager.PrintAvailableSets();
+    }
+    public void SetGameType(int gameTypeIndex)
+    {
+        switch (gameTypeIndex)
+        {
+            case 0:
+                gameType = GameType.SinglePlayer;
+                break;
+            case 1:
+                gameType = GameType.Versus;
+                break;
+            case 2:
+                gameType = GameType.Multiplayer;
+                break;
+            default:
+                break;
+        }
+
+        StartGame();
     }
 }

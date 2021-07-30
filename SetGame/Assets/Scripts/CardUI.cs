@@ -111,4 +111,8 @@ public class CardUI : MonoBehaviour
 
         frontFacing = shouldFaceFront;
     }
+    public void CardPress()
+    {
+        BoardUI.instance.SelectCard(transform.GetSiblingIndex());
+    }
 }
