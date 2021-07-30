@@ -9,16 +9,18 @@ public class BoardUI : MonoBehaviour
     public GameObject gridPrefab;
     public GameObject cardPrefab;
 
-    [Header("UI Gameobjects")]
-    public GameObject backgroundGridUI;
-    public GameObject foregroundGridUI;
+    [Header("UI References")]
+    public Transform backgroundGridUI;
+    public Transform foregroundGridUI;
+    public RectTransform pile;
+    public FlexibleGridLayout backgroundGridLayout;
 
     [Header("Animation Options")]
     public float defaultAnimationDuration = 2f;
 
     //TODO Change lists of GameObjects to RectTransforms and CardUI (or whatever the UI card class is called)
-    private List<GameObject> backgroundGrid = new List<GameObject>();
-    private CardUI[] foregroundCards;
+    private List<RectTransform> backgroundGrid = new List<RectTransform>();
+    private List<CardUI> foregroundCards = new List<CardUI>();
 
     private void Start() 
     {
@@ -27,17 +29,31 @@ public class BoardUI : MonoBehaviour
 
     public void PopulateGrid(int gridSize = 12)
     {
-        foreach(Transform child in backgroundGridUI.transform)
+        foreach(Transform child in backgroundGridUI)
         {
             Destroy(child.gameObject);
         }
 
         for (int i = 0; i < gridSize; i++)
         {
-            GameObject gridObject = Instantiate(gridPrefab, backgroundGridUI.transform);
-            backgroundGrid.Add(gridObject);
+            GameObject gridObject = Instantiate(gridPrefab, backgroundGridUI);
+            backgroundGrid.Add(gridObject.GetComponent<RectTransform>());
         }
 
-        //TODO Instantiate cards and animate their position to the background grid
+        //Force FlexibleLayoutGroup update after adding cards. Making sure animations can start the same frame
+        backgroundGridLayout.CalculateLayoutInputHorizontal();
+
+        for (int i = 0; i < gridSize; i++)
+        {
+            GameObject cardObject = Instantiate(cardPrefab, foregroundGridUI);
+
+            cardObject.GetComponent<RectTransform>().position = pile.position;
+            cardObject.GetComponent<RectTransform>().sizeDelta = backgroundGridLayout.cellSize;
+            //TODO Calculate size of cards
+
+            CardUI cardUI = cardObject.GetComponent<CardUI>();
+            foregroundCards.Add(cardUI);
+            cardUI.StartMove(backgroundGrid[i], defaultAnimationDuration);
+        }
     }
  }

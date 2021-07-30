@@ -33,9 +33,6 @@ public class CardUI : MonoBehaviour
     }
     private IEnumerator ExecuteMove()
     {
-        //Let the backgroundgrid settle in
-        yield return new WaitForSeconds(0.001f);
-
         float time = 0f;
 
         while(cardRect.position != targetRect.position)
