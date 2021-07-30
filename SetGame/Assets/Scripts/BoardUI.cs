@@ -11,11 +11,14 @@ public class BoardUI : MonoBehaviour
 
     [Header("UI Gameobjects")]
     public GameObject backgroundGridUI;
-    public GameObject foregroundGridUI; 
+    public GameObject foregroundGridUI;
+
+    [Header("Animation Options")]
+    public float defaultAnimationDuration = 2f;
 
     //TODO Change lists of GameObjects to RectTransforms and CardUI (or whatever the UI card class is called)
-    private GameObject[] backgroundGrid;
-    private GameObject[] foregroundCards;
+    private List<GameObject> backgroundGrid = new List<GameObject>();
+    private CardUI[] foregroundCards;
 
     private void Start() 
     {
@@ -26,12 +29,13 @@ public class BoardUI : MonoBehaviour
     {
         foreach(Transform child in backgroundGridUI.transform)
         {
-            Destroy(child);
+            Destroy(child.gameObject);
         }
 
         for (int i = 0; i < gridSize; i++)
         {
-            var gridObject = Instantiate(gridPrefab, backgroundGridUI.transform);
+            GameObject gridObject = Instantiate(gridPrefab, backgroundGridUI.transform);
+            backgroundGrid.Add(gridObject);
         }
 
         //TODO Instantiate cards and animate their position to the background grid
