@@ -214,6 +214,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0e8a9c64217a545aff42ba45f22778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shapeSprites:
+  - {fileID: 21300000, guid: 8748962baeeafe647827e28960e90869, type: 3}
+  - {fileID: 21300000, guid: 824fd83c2ce32d047acbc3dc5844e2f3, type: 3}
+  - {fileID: 21300000, guid: 60cd1c9ff9161df4593f4373a9bfdc19, type: 3}
+  - {fileID: 21300000, guid: 1c0e00f844c8fe647b0d118921709c87, type: 3}
+  - {fileID: 21300000, guid: b226b6741b8a12045a0550c31aa809a5, type: 3}
+  - {fileID: 21300000, guid: 677c78d0ae3c7d14facb17056c0919b3, type: 3}
+  - {fileID: 21300000, guid: 2255e343f35d75946ad5b07fdf672b15, type: 3}
+  - {fileID: 21300000, guid: 35e45f7013c0b834ebfac18169fa45a2, type: 3}
+  - {fileID: 21300000, guid: 67f69a161ca0fd143b5713a21cf24fae, type: 3}
+  - {fileID: 21300000, guid: e279f45824b403e4eb45ec78dd2a169d, type: 3}
+  - {fileID: 21300000, guid: 77a4dac5ac8e0af469b119692d6e9465, type: 3}
+  - {fileID: 21300000, guid: 38c9a77b7bbde7c4aba78746840a0a9f, type: 3}
+  - {fileID: 21300000, guid: a129cf00b89cea041ba43cf9f3d31b11, type: 3}
+  - {fileID: 21300000, guid: 2381a7fe32402cb4dabb5b2b62bd897b, type: 3}
+  - {fileID: 21300000, guid: 748837eb25641f7468b45e3a8b7c3886, type: 3}
+  - {fileID: 21300000, guid: 8c717cdf9b599a74c93121d23154f23b, type: 3}
+  - {fileID: 21300000, guid: 700a5d285e4c212479de64f6be48dffa, type: 3}
+  - {fileID: 21300000, guid: 604726b2e1bcfe34fb48fbf0dadd47f9, type: 3}
+  - {fileID: 21300000, guid: fca67c48d698a3347b99f2657c16f74a, type: 3}
+  - {fileID: 21300000, guid: 3ca9c6a52937e1e4e88bca34fd952657, type: 3}
+  - {fileID: 21300000, guid: 904b29df47adaf7438213a706919edd8, type: 3}
+  - {fileID: 21300000, guid: 1233f1b5b5cb1944f950b8c620b1e34a, type: 3}
+  - {fileID: 21300000, guid: 1078e09d6bfa6684292a4ef9da7bb2ec, type: 3}
+  - {fileID: 21300000, guid: 5e217d0cfdcc2d449a365f218c1219af, type: 3}
+  - {fileID: 21300000, guid: 28311ccdeba685b4cabff71425b32f8b, type: 3}
+  - {fileID: 21300000, guid: 93b5888ef307a3d44ae36d7a2f9322bf, type: 3}
+  - {fileID: 21300000, guid: 242b852216284a54d9502ac44a4f8908, type: 3}
   gridPrefab: {fileID: 7208875036126804478, guid: 40015399483c63e41816f4b16db9ec11, type: 3}
   cardPrefab: {fileID: 5236852445559862183, guid: 692a7992fa82b5e4eb2e585b573f9b94, type: 3}
   backgroundGridUI: {fileID: 1129876710}
@@ -304,6 +332,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &881948115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 881948116}
+  - component: {fileID: 881948117}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &881948116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881948115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &881948117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881948115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593dcf675e6293f478c5a7c651fdf949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardManager: {fileID: 1726402143}
+  boardUI: {fileID: 373869415}
 --- !u!1 &939845728
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +617,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1698683342
 GameObject:
@@ -639,7 +712,7 @@ RectTransform:
   m_Children:
   - {fileID: 373869412}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -675,7 +748,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1726402143
 MonoBehaviour:

@@ -17,6 +17,36 @@ public class CardData
         attributes = (short)((1 << (colorShift + 9)) | (1 << (shapeShift + 6)) | (1 << (amountShift + 3)) | (1 << fillShift));
     }
 
+    public int GetColorIndex() 
+    {
+        return GetAttributeIndex(attributes >> 9);
+    }
+    public int GetShapeIndex()
+    {
+        return GetAttributeIndex((attributes >> 6) & 0b111);
+    }
+    public int GetAmountIndex() 
+    {
+        return GetAttributeIndex((attributes >> 3) & 0b111);
+    }
+    public int GetFillIndex()
+    {
+        return GetAttributeIndex(attributes & 0b111);
+    }
+    public int GetAttributeIndex(int attr) 
+    {
+        switch (attr)
+        {
+            case 0b001:
+                return 0;
+            case 0b010:
+                return 1;
+            case 0b100:
+                return 2;
+        }
+        //Error
+        return -1;
+    }
     public void PrintCardBits() //Debugging method to check card bits
     {
         string bitString = string.Empty;

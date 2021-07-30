@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class BoardUI : MonoBehaviour
 {
+    [Header("Cards")]
+    public Sprite[] shapeSprites;
+
     [Header("Prefabs")]
     public GameObject gridPrefab;
     public GameObject cardPrefab;
@@ -22,19 +25,14 @@ public class BoardUI : MonoBehaviour
     private List<RectTransform> backgroundGrid = new List<RectTransform>();
     private List<CardUI> foregroundCards = new List<CardUI>();
 
-    private void Start() 
-    {
-        PopulateGrid();
-    }
-
-    public void PopulateGrid(int gridSize = 12)
+    public void PopulateGrid(List<CardData> board)
     {
         foreach(Transform child in backgroundGridUI)
         {
             Destroy(child.gameObject);
         }
 
-        for (int i = 0; i < gridSize; i++)
+        for (int i = 0; i < board.Count; i++)
         {
             GameObject gridObject = Instantiate(gridPrefab, backgroundGridUI);
             backgroundGrid.Add(gridObject.GetComponent<RectTransform>());
@@ -43,17 +41,23 @@ public class BoardUI : MonoBehaviour
         //Force FlexibleLayoutGroup update after adding cards. Making sure animations can start the same frame
         backgroundGridLayout.CalculateLayoutInputHorizontal();
 
-        for (int i = 0; i < gridSize; i++)
+        for (int i = 0; i < board.Count; i++)
         {
             GameObject cardObject = Instantiate(cardPrefab, foregroundGridUI);
 
             cardObject.GetComponent<RectTransform>().position = pile.position;
             cardObject.GetComponent<RectTransform>().sizeDelta = backgroundGridLayout.cellSize;
-            //TODO Calculate size of cards
 
             CardUI cardUI = cardObject.GetComponent<CardUI>();
             foregroundCards.Add(cardUI);
+            DrawCard(i, board[i]);
             cardUI.StartMove(backgroundGrid[i], defaultAnimationDuration);
         }
+    }
+   
+    private void DrawCard(int cardIndex, CardData card)
+    {
+        int spriteIndex = card.GetColorIndex() * 9 + card.GetFillIndex() * 3 + card.GetShapeIndex();
+        foregroundCards[cardIndex].DrawIcons(shapeSprites[spriteIndex], card.GetAmountIndex() + 1);
     }
  }

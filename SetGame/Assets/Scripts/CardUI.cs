@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class CardUI : MonoBehaviour
 {
+    [Header("Prefabs")]
+    public GameObject iconPrefab;
+
     [Header("GameObject Components")]
     public RectTransform cardRect;
     public Image cardImage;
@@ -22,6 +25,19 @@ public class CardUI : MonoBehaviour
     private RectTransform targetRect;
     private float moveDuration;
 
+    public void DrawIcons(Sprite icon, int amount) 
+    {
+        foreach (Transform child in transform) 
+        {
+            Destroy(child.gameObject);
+        }
+
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject iconObject = Instantiate(iconPrefab, transform);
+            iconObject.GetComponent<Image>().sprite = icon;
+        }
+    }
     public void StartMove(RectTransform _targetRect, float _duration) 
     {
         StopAllCoroutines();

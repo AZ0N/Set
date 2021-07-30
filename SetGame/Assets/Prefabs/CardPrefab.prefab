@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5236852445559862186}
   - component: {fileID: 5236852445559862181}
   - component: {fileID: 9164642609745413128}
+  - component: {fileID: 2561055082174913596}
+  - component: {fileID: 6401270054579109315}
   m_Layer: 5
   m_Name: CardPrefab
   m_TagString: Untagged
@@ -88,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce004188eb043343907fe4e64e869d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconPrefab: {fileID: 2756652577569889186, guid: f1f0c8bd81a24a04695173ea29d42bef, type: 3}
   cardRect: {fileID: 5236852445559862180}
   cardImage: {fileID: 5236852445559862181}
   frontSprite: {fileID: 21300000, guid: fed076cd9bd9a1a4b8e7d36c665696fb, type: 3}
@@ -125,3 +128,43 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2561055082174913596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5236852445559862183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce01a2e70e6039d4dab4de2aa4d4317d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 50
+    m_Right: 50
+    m_Top: 30
+    m_Bottom: 30
+  m_ChildAlignment: 0
+  fitType: 4
+  rows: 1
+  columns: 1
+  cellSize: {x: 223.7833, y: 325.3008}
+  spacing: {x: 0, y: 30}
+  fitX: 1
+  fitY: 1
+--- !u!114 &6401270054579109315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5236852445559862183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2509804}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1

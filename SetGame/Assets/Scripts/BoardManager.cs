@@ -7,17 +7,11 @@ public class BoardManager : MonoBehaviour
 {
     public int baseBoardSize = 12;
 
+    //CardData lists
     public List<CardData> board = new List<CardData>();
     public List<CardData> deck = new List<CardData>();
 
     private System.Random rng = new System.Random();
-
-    private void Start() 
-    {
-        GenerateDeck();
-        ShuffleDeck();
-        PopulateBoard();
-    }
 
     //General board operations
     public void PopulateBoard()
@@ -27,7 +21,13 @@ public class BoardManager : MonoBehaviour
             board.Add(PopCardFromDeck());
         }
     }
-
+    public void SetupGame() 
+    {
+        GenerateDeck();
+        ShuffleDeck();
+        PopulateBoard();
+    }
+    
     //Deck operations
     public void GenerateDeck() 
     {
@@ -65,7 +65,6 @@ public class BoardManager : MonoBehaviour
     {
         CardData card = deck[0];
         deck.Remove(card);
-
         return card;
     }
 
