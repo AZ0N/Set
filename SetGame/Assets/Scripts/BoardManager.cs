@@ -13,6 +13,28 @@ public class BoardManager : MonoBehaviour
 
     private System.Random rng = new System.Random();
 
+    //Set operations
+    public bool IsSet(CardData a, CardData b, CardData c)
+    {
+        short or_result = (short)((int)a.attributes | (int)b.attributes | (int)c.attributes);
+
+        for (int i = 0; i < 4; i++)
+        {
+            switch (or_result & 0b111)
+            {
+                case 0b001:
+                case 0b010:
+                case 0b100:
+                case 0b111:
+                    break;
+                default:
+                    return false;
+            }
+            or_result = (short)(or_result >> 3);
+        }
+        return true;
+    }
+
     //General board operations
     public void SetupGame() 
     {
@@ -26,6 +48,24 @@ public class BoardManager : MonoBehaviour
         {
             board.Add(PopCardFromDeck());
         }
+    }
+    public bool BoardHasSets()
+    {
+        for (int i = 0; i < board.Count - 2; i++)
+        {
+            for (int j = i + 1; j < board.Count - 1; j++)
+            {
+                for (int k = j + 1; k < board.Count; k++)
+                {
+                    if (IsSet(board[i], board[j], board[k]))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
     
     //Deck operations
@@ -83,5 +123,27 @@ public class BoardManager : MonoBehaviour
     public void PrintBoard() 
     {
         PrintCardList(board);
+    }
+    public void PrintAvailableSets()
+    {
+        int amountSets = 0;
+        string set_locations = "";
+
+        for (int i = 0; i < board.Count - 2; i++)
+        {
+            for (int j = i + 1; j < board.Count - 1; j++)
+            {
+                for (int k = j + 1; k < board.Count; k++)
+                {
+                    if (IsSet(board[i], board[j], board[k]))
+                    {
+                        set_locations += $" ({i + 1},{j + 1},{k + 1})";
+                        amountSets++;
+                    }
+                }
+            }
+        }
+
+        Debug.Log($"{amountSets} available sets:{set_locations}");
     }
 }

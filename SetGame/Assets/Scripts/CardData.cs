@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CardData
 {
-    short attributes;
+    public short attributes {get;}
     public CardData(int colorShift, int shapeShift, int amountShift, int fillShift)
     {
         //Check if the argument passed to the constructor are valid.

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     {
         //Setup game data and draw cards to screen
         boardManager.SetupGame();
-        boardUI.PopulateGrid(boardManager.board);    
+        boardUI.PopulateGrid(boardManager.board);
+        Debug.Log(boardManager.BoardHasSets());
+        boardManager.PrintAvailableSets();
     }
 }
