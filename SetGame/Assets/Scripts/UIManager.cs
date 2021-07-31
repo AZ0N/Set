@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject board;
     public GameObject playerButtons;
     public GameObject gameTypeSelection;
+    public GameObject setCheck;
 
     [Header("Set! Buttons")]
     public GameObject topButton;
@@ -49,16 +50,23 @@ public class UIManager : MonoBehaviour
     {
         board.SetActive(false);
         playerButtons.SetActive(false);
+        setCheck.SetActive(false);
 
         gameTypeSelection.SetActive(true);
     }
     public void EnableBoard()
     {
         gameTypeSelection.SetActive(false);
+        setCheck.SetActive(false);
 
         board.SetActive(true);
         playerButtons.SetActive(true);
         AnimateButtons(true);
+    }
+    public void EnableSetCheck(CardData[] cardsToCheck, bool wasSet)
+    {
+        setCheck.SetActive(true);
+        setCheck.GetComponent<SetCheckUI>().StartAnimation(cardsToCheck, wasSet);
     }
     public void ButtonPress(int buttonIndex)
     {

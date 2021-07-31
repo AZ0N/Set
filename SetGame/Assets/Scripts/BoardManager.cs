@@ -48,6 +48,10 @@ public class BoardManager : MonoBehaviour
         }
         return true;
     }
+    public bool IsSet(CardData[] cards)
+    {
+        return IsSet(cards[0], cards[1], cards[2]);
+    }
 
     //General board operations
     public void SetupGame() 

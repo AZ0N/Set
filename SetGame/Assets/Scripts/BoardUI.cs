@@ -179,7 +179,6 @@ public class BoardUI : MonoBehaviour
 
         StartCoroutine(ExecuteColorAnim());
     }
-
     IEnumerator ExecuteColorAnim()
     {
         float timer = 0f;

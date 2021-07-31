@@ -64,10 +64,19 @@ public class GameManager : MonoBehaviour
     }
     public void CardsSelected(int[] selectedCards)
     {
-        Debug.Log($"Cards selected: {selectedCards[0]}, {selectedCards[1]}, {selectedCards[2]}");
         BoardUI.instance.SetCardsInteractable(false);
         UIManager.instance.AnimateButtons(true);
         BoardUI.instance.AnimateBackgroundColor(-1);
+
+        CardData[] cards = new CardData[]
+        {
+            BoardManager.instance.board[selectedCards[0]],
+            BoardManager.instance.board[selectedCards[1]],
+            BoardManager.instance.board[selectedCards[2]]
+        };
+
+        UIManager.instance.EnableSetCheck(cards, BoardManager.instance.IsSet(cards));
+        //TODO Handle points
     }
     public void SetPressed(int buttonIndex)
     {
