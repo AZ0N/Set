@@ -117,7 +117,6 @@ public class BoardUI : MonoBehaviour
             //If it isn't -1, cardIndex is already present in selectedCards. Deselect the card.
             selectedCards[indexOfCardIndex] = -1;
             foregroundCards[cardIndex].SetButtonColors(baseButtonColors);
-            Debug.Log($"Deselected {cardIndex}");
         }
         else
         {
@@ -129,7 +128,6 @@ public class BoardUI : MonoBehaviour
                     //An empty spot was found. Set the spot and break out of the loop
                     selectedCards[i] = cardIndex;
                     foregroundCards[cardIndex].SetButtonColors(selectedButtonColors);
-                    Debug.Log($"Selected {cardIndex}");
                     break;
                 }
             }
