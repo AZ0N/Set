@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
         Versus,
         Multiplayer
     }
-    private GameType gameType;
+    public GameType gameType;
     private void Awake() 
     {
         if (instance == null)
@@ -64,16 +64,13 @@ public class GameManager : MonoBehaviour
     }
     public void CardsSelected(int[] selectedCards)
     {
-        BoardUI.instance.SetCardsInteractable(false);
+        if (gameType != GameType.SinglePlayer)
+            BoardUI.instance.SetCardsInteractable(false);
+        
         UIManager.instance.AnimateButtons(true);
         BoardUI.instance.AnimateBackgroundColor(-1);
 
-        CardData[] cards = new CardData[]
-        {
-            BoardManager.instance.board[selectedCards[0]],
-            BoardManager.instance.board[selectedCards[1]],
-            BoardManager.instance.board[selectedCards[2]]
-        };
+        CardData[] cards = BoardManager.instance.GetSelectedCards(selectedCards);
 
         UIManager.instance.EnableSetCheck(cards, BoardManager.instance.IsSet(cards));
 

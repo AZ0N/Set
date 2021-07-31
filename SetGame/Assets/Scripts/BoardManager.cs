@@ -134,6 +134,17 @@ public class BoardManager : MonoBehaviour
         return card;
     }
 
+    //Retrieving cards:
+    public CardData[] GetSelectedCards(int[] cardIndexes)
+    {
+        return new CardData[]
+        {
+            board[cardIndexes[0]],
+            board[cardIndexes[1]],
+            board[cardIndexes[2]]
+        };
+    }
+
     //Debugging methods to print contents of deck and board lists
     public void PrintCardList(List<CardData> cardList) 
     {

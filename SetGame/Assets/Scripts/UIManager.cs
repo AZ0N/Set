@@ -60,8 +60,11 @@ public class UIManager : MonoBehaviour
         setCheck.SetActive(false);
 
         board.SetActive(true);
-        playerButtons.SetActive(true);
-        AnimateButtons(true);
+        if (GameManager.instance.gameType != GameManager.GameType.SinglePlayer)
+        {
+            playerButtons.SetActive(true);
+            AnimateButtons(true);
+        }
     }
     public void EnableSetCheck(CardData[] cardsToCheck, bool wasSet)
     {
