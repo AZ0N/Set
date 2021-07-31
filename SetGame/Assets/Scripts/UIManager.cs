@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     private Vector3 botStartPos;
     private Vector3 topEndPos;
     private Vector3 botEndPos;
+    private bool enableButtonOnEnd;
     private void Awake() 
     {
         if (instance == null)
@@ -72,6 +73,9 @@ public class UIManager : MonoBehaviour
     {
         StopCoroutine(ExecuteButtonMove());
 
+        //If the buttons are animating out, then disable so they can't be pressed. If they are animating in, just make sure they are disabled during the animation
+        SetButtonsInteractable(false);
+
         if (animateIn)
         {
             topStartPos = topAnimLocation.position;
@@ -88,6 +92,8 @@ public class UIManager : MonoBehaviour
             botStartPos = botInPos;
             botEndPos = botAnimLocation.position;
         }
+
+        enableButtonOnEnd = animateIn;
 
         StartCoroutine(ExecuteButtonMove());
     }
@@ -112,6 +118,12 @@ public class UIManager : MonoBehaviour
             timer += Time.deltaTime;
 
             yield return null;
+        }
+
+        //If the buttons are animating in, set them to interactable after the animation
+        if (enableButtonOnEnd)
+        {
+            SetButtonsInteractable(true);
         }
     }
 }

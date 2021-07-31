@@ -11,6 +11,7 @@ public class CardUI : MonoBehaviour
     [Header("GameObject Components")]
     public RectTransform cardRect;
     public Image cardImage;
+    public Button cardButton;
 
     [Header("Flip Options")]
     public Sprite frontSprite;
@@ -114,5 +115,9 @@ public class CardUI : MonoBehaviour
     public void CardPress()
     {
         BoardUI.instance.SelectCard(transform.GetSiblingIndex());
+    }
+    public void SetButtonColors(ColorBlock colorBlock)
+    {
+        cardButton.colors = colorBlock;
     }
 }

@@ -594,7 +594,7 @@ MonoBehaviour:
   pileLocation: {fileID: 5236852447068735783}
   backgroundGridLayout: {fileID: 1129876713}
   defaultAnimationDuration: 1
-  selectedColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0.6745098, g: 1, b: 0.72156864, a: 1}
   boardBackground: {fileID: 373869413}
   colorAnimDuration: 0.5
   topColor: {r: 0.9490197, g: 0.5568628, b: 0.5568628, a: 1}

@@ -104,18 +104,19 @@ public class BoardUI : MonoBehaviour
     {
         foreach (CardUI cardUI in foregroundCards) 
         {
-            cardUI.gameObject.GetComponent<Button>().interactable = shouldInteract;
+            cardUI.cardButton.interactable = shouldInteract;
         }
     }
     public void SelectCard(int cardIndex)
     {
         // Get the index of cardIndex in selectedCards array. Returns -1 if cardIndex is not in selectedCards
-        int index = Array.IndexOf(selectedCards, cardIndex);
+        int indexOfCardIndex = Array.IndexOf(selectedCards, cardIndex);
 
-        if (index != -1)
+        if (indexOfCardIndex != -1)
         {
             //If it isn't -1, cardIndex is already present in selectedCards. Deselect the card.
-            selectedCards[index] = -1;
+            selectedCards[indexOfCardIndex] = -1;
+            foregroundCards[cardIndex].SetButtonColors(baseButtonColors);
             Debug.Log($"Deselected {cardIndex}");
         }
         else
@@ -127,6 +128,7 @@ public class BoardUI : MonoBehaviour
                 {
                     //An empty spot was found. Set the spot and break out of the loop
                     selectedCards[i] = cardIndex;
+                    foregroundCards[cardIndex].SetButtonColors(selectedButtonColors);
                     Debug.Log($"Selected {cardIndex}");
                     break;
                 }
@@ -139,6 +141,7 @@ public class BoardUI : MonoBehaviour
                 //Clearing array
                 for (int i = 0; i < selectedCards.Length; i++)
                 {
+                    foregroundCards[selectedCards[i]].SetButtonColors(baseButtonColors);
                     selectedCards[i] = -1;
                 }
             }
@@ -149,10 +152,12 @@ public class BoardUI : MonoBehaviour
         baseButtonColors.normalColor = Color.white;
         baseButtonColors.pressedColor = Color.white;
         baseButtonColors.highlightedColor = selectedColor;
+        baseButtonColors.disabledColor = Color.white;
 
         selectedButtonColors.normalColor = selectedColor;
         selectedButtonColors.selectedColor = selectedColor;
         selectedButtonColors.highlightedColor = selectedColor;
+        selectedButtonColors.disabledColor = selectedColor;
     }
     public void AnimateBackgroundColor(int colorIndex)
     {
