@@ -53,7 +53,7 @@ public class BoardManager : MonoBehaviour
         return IsSet(cards[0], cards[1], cards[2]);
     }
 
-    //General board operations
+    //Board operations
     public void SetupGame() 
     {
         GenerateDeck();
@@ -85,7 +85,15 @@ public class BoardManager : MonoBehaviour
 
         return false;
     }
-    
+    public void ReplaceCards(int[] cardIndexes)
+    {
+        //TODO Check if there's still cards left in the deck
+
+        foreach (int index in cardIndexes)
+        {
+            board[index] = PopCardFromDeck();
+        }
+    }
     //Deck operations
     public void GenerateDeck() 
     {

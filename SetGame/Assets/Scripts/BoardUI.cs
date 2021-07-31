@@ -100,6 +100,13 @@ public class BoardUI : MonoBehaviour
         int spriteIndex = card.GetColorIndex() * 9 + card.GetFillIndex() * 3 + card.GetShapeIndex();
         foregroundCards[cardIndex].DrawIcons(iconSprites[spriteIndex], card.GetAmountIndex() + 1);
     }
+    public void DrawNewCards(int[] newCardsIndexes)
+    {
+        foreach (int newCardIndex in newCardsIndexes)
+        {
+            DrawCard(newCardIndex, BoardManager.instance.board[newCardIndex]);
+        }
+    }
     public void SetCardsInteractable(bool shouldInteract) 
     {
         foreach (CardUI cardUI in foregroundCards) 

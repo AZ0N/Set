@@ -76,6 +76,14 @@ public class GameManager : MonoBehaviour
         };
 
         UIManager.instance.EnableSetCheck(cards, BoardManager.instance.IsSet(cards));
+
+        if (BoardManager.instance.IsSet(cards))
+        {
+            BoardManager.instance.ReplaceCards(selectedCards);
+            //TODO Create animation so cards don't change immediatly
+            BoardUI.instance.DrawNewCards(selectedCards);
+            BoardManager.instance.PrintAvailableSets();
+        }
         //TODO Handle points
     }
     public void SetPressed(int buttonIndex)
