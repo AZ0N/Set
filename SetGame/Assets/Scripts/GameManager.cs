@@ -87,8 +87,6 @@ public class GameManager : MonoBehaviour
                 //TODO Create animation so cards don't change immediatly
                 BoardUI.instance.DrawNewCards(selectedCards);
             }
-            //Debuggin
-            BoardManager.instance.PrintAvailableSets();
 
             if (!BoardManager.instance.BoardHasSets())
             {
@@ -102,6 +100,9 @@ public class GameManager : MonoBehaviour
                     BoardUI.instance.AddNewCards();
                 }
             }
+
+            //Debuggin
+            BoardManager.instance.PrintAvailableSets();
         }
         //TODO Handle points
     }

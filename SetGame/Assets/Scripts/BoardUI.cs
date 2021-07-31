@@ -99,11 +99,13 @@ public class BoardUI : MonoBehaviour
     private void SetupColorBlocks()
     {
         baseButtonColors.normalColor = Color.white;
-        baseButtonColors.pressedColor = Color.white;
-        baseButtonColors.highlightedColor = selectedColor;
+        baseButtonColors.pressedColor = selectedColor;
+        baseButtonColors.highlightedColor = Color.white;
+        baseButtonColors.selectedColor = Color.white;
         baseButtonColors.disabledColor = Color.white;
 
         selectedButtonColors.normalColor = selectedColor;
+        selectedButtonColors.pressedColor = selectedColor;
         selectedButtonColors.selectedColor = selectedColor;
         selectedButtonColors.highlightedColor = selectedColor;
         selectedButtonColors.disabledColor = selectedColor;
