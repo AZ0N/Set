@@ -44,6 +44,8 @@ public class BoardUI : MonoBehaviour
 
     private ColorBlock baseButtonColors = ColorBlock.defaultColorBlock, selectedButtonColors = ColorBlock.defaultColorBlock;
     private int[] selectedCards = new int[]{-1, -1, -1};
+
+    //General
     private void Awake() 
     {
         if (instance == null)
@@ -94,6 +96,20 @@ public class BoardUI : MonoBehaviour
             cardUI.StartMove(backgroundGrid[i], defaultAnimationDuration);
         }
     }
+    private void SetupColorBlocks()
+    {
+        baseButtonColors.normalColor = Color.white;
+        baseButtonColors.pressedColor = Color.white;
+        baseButtonColors.highlightedColor = selectedColor;
+        baseButtonColors.disabledColor = Color.white;
+
+        selectedButtonColors.normalColor = selectedColor;
+        selectedButtonColors.selectedColor = selectedColor;
+        selectedButtonColors.highlightedColor = selectedColor;
+        selectedButtonColors.disabledColor = selectedColor;
+    }
+
+    //Card Icon Drawing
     private void DrawCard(int cardIndex, CardData card)
     {
         //Get the index of the correct sprite, and calling the cards DrawIcons method
@@ -107,6 +123,8 @@ public class BoardUI : MonoBehaviour
             DrawCard(newCardIndex, BoardManager.instance.board[newCardIndex]);
         }
     }
+    
+    //Card Methods
     public void SetCardsInteractable(bool shouldInteract) 
     {
         foreach (CardUI cardUI in foregroundCards) 
@@ -114,6 +132,8 @@ public class BoardUI : MonoBehaviour
             cardUI.cardButton.interactable = shouldInteract;
         }
     }
+    
+    //Card Selection
     public void SelectCard(int cardIndex)
     {
         // Get the index of cardIndex in selectedCards array. Returns -1 if cardIndex is not in selectedCards
@@ -152,18 +172,8 @@ public class BoardUI : MonoBehaviour
             }
         }
     }
-    private void SetupColorBlocks()
-    {
-        baseButtonColors.normalColor = Color.white;
-        baseButtonColors.pressedColor = Color.white;
-        baseButtonColors.highlightedColor = selectedColor;
-        baseButtonColors.disabledColor = Color.white;
-
-        selectedButtonColors.normalColor = selectedColor;
-        selectedButtonColors.selectedColor = selectedColor;
-        selectedButtonColors.highlightedColor = selectedColor;
-        selectedButtonColors.disabledColor = selectedColor;
-    }
+    
+    //Animation Methods
     public void AnimateBackgroundColor(int colorIndex)
     {
         StopCoroutine(ExecuteColorAnim());
