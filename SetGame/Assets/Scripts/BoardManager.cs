@@ -88,12 +88,19 @@ public class BoardManager : MonoBehaviour
     public void ReplaceCards(int[] cardIndexes)
     {
         //TODO Check if there's still cards left in the deck
-
         foreach (int index in cardIndexes)
         {
             board[index] = PopCardFromDeck();
         }
     }
+    public  void AddCards()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            board.Add(PopCardFromDeck());
+        }
+    }
+
     //Deck operations
     public void GenerateDeck() 
     {

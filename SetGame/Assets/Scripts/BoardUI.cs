@@ -132,7 +132,36 @@ public class BoardUI : MonoBehaviour
             cardUI.cardButton.interactable = shouldInteract;
         }
     }
-    
+    public void AddNewCards()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject gridObject = Instantiate(gridPrefab, backgroundGridUI);
+            backgroundGrid.Add(gridObject.GetComponent<RectTransform>());
+        }
+
+        backgroundGridLayout.CalculateLayoutInputHorizontal();
+
+        for (int i = 0; i < foregroundCards.Count; i++)
+        {
+            foregroundCards[i].StartMove(backgroundGrid[i], defaultAnimationDuration);
+        }
+
+        for (int i = BoardManager.instance.board.Count - 3; i < BoardManager.instance.board.Count; i++)
+        {
+            GameObject cardObject = Instantiate(cardPrefab, foregroundGridUI);
+
+            cardObject.GetComponent<RectTransform>().position = pileLocation.position;
+            cardObject.GetComponent<RectTransform>().sizeDelta = backgroundGridLayout.cellSize;
+
+            CardUI cardUI = cardObject.GetComponent<CardUI>();
+            foregroundCards.Add(cardUI);
+
+            DrawCard(i, BoardManager.instance.board[i]);
+            cardUI.StartMove(backgroundGrid[i], defaultAnimationDuration);
+        }
+    }
+
     //Card Selection
     public void SelectCard(int cardIndex)
     {

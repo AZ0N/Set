@@ -76,10 +76,32 @@ public class GameManager : MonoBehaviour
 
         if (BoardManager.instance.IsSet(cards))
         {
-            BoardManager.instance.ReplaceCards(selectedCards);
-            //TODO Create animation so cards don't change immediatly
-            BoardUI.instance.DrawNewCards(selectedCards);
+            if (BoardManager.instance.deck.Count < 3)
+            {
+                Debug.Log("No more cards left!");
+                //TODO Make selected cards invisible
+            }
+            else
+            {
+                BoardManager.instance.ReplaceCards(selectedCards);
+                //TODO Create animation so cards don't change immediatly
+                BoardUI.instance.DrawNewCards(selectedCards);
+            }
+            //Debuggin
             BoardManager.instance.PrintAvailableSets();
+
+            if (!BoardManager.instance.BoardHasSets())
+            {
+                if (BoardManager.instance.deck.Count < 3)
+                {
+                    Debug.Log("End Game");
+                }
+                else
+                {
+                    BoardManager.instance.AddCards();
+                    BoardUI.instance.AddNewCards();
+                }
+            }
         }
         //TODO Handle points
     }
