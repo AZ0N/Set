@@ -42,7 +42,7 @@ public class CardUI : MonoBehaviour
     }
     public void StartMove(RectTransform _targetRect, float _duration) 
     {
-        StopAllCoroutines();
+        StopCoroutine(ExecuteMove());
         initalPos = cardRect.position;
         initialSizeDelta = cardRect.sizeDelta;
         targetRect = _targetRect;

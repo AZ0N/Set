@@ -8,8 +8,8 @@ public class BoardUI : MonoBehaviour
 {
     public static BoardUI instance;
 
-    [Header("Cards")]
-    public Sprite[] shapeSprites;
+    [Header("Card Sprites")]
+    public Sprite[] iconSprites;
 
     [Header("Prefabs")]
     public GameObject gridPrefab;
@@ -24,11 +24,23 @@ public class BoardUI : MonoBehaviour
     [Header("Animation Options")]
     public float defaultAnimationDuration = 1f;
 
+    //Board Objects
     private List<RectTransform> backgroundGrid = new List<RectTransform>();
     private List<CardUI> foregroundCards = new List<CardUI>();
 
     [Header("Card Button Options")]
     public Color selectedColor;
+
+    [Header("Component References")]
+    public Image boardBackground;
+    
+    //Animation variables
+    [Header("Color Animation Options")]
+    public float colorAnimDuration = 0.5f;
+    public Color topColor;
+    public Color botColor;
+    private Color startColor;
+    private Color endColor;
 
     private ColorBlock baseButtonColors = ColorBlock.defaultColorBlock, selectedButtonColors = ColorBlock.defaultColorBlock;
     private int[] selectedCards = new int[]{-1, -1, -1};
@@ -86,9 +98,9 @@ public class BoardUI : MonoBehaviour
     {
         //Get the index of the correct sprite, and calling the cards DrawIcons method
         int spriteIndex = card.GetColorIndex() * 9 + card.GetFillIndex() * 3 + card.GetShapeIndex();
-        foregroundCards[cardIndex].DrawIcons(shapeSprites[spriteIndex], card.GetAmountIndex() + 1);
+        foregroundCards[cardIndex].DrawIcons(iconSprites[spriteIndex], card.GetAmountIndex() + 1);
     }
-    public void SetButtonInteractable(bool shouldInteract) 
+    public void SetCardsInteractable(bool shouldInteract) 
     {
         foreach (CardUI cardUI in foregroundCards) 
         {
@@ -123,7 +135,7 @@ public class BoardUI : MonoBehaviour
             //After adding the cardIndex to selectedCards check if the array is full (doesn't contain -1)
             if (Array.IndexOf(selectedCards, -1) == -1) 
             {
-                Debug.Log("3 cards selected! Clearing selection");
+                GameManager.instance.CardsSelected(new int[] {selectedCards[0], selectedCards[1], selectedCards[2]});
                 //Clearing array
                 for (int i = 0; i < selectedCards.Length; i++)
                 {
@@ -141,5 +153,45 @@ public class BoardUI : MonoBehaviour
         selectedButtonColors.normalColor = selectedColor;
         selectedButtonColors.selectedColor = selectedColor;
         selectedButtonColors.highlightedColor = selectedColor;
+    }
+    public void AnimateBackgroundColor(int colorIndex)
+    {
+        StopCoroutine(ExecuteColorAnim());
+
+        startColor = boardBackground.color;
+        switch (colorIndex)
+        {
+            case 0:
+                endColor = topColor;
+                break;
+            case 1:
+                endColor = botColor;
+                break;
+            case -1:
+                endColor = Color.white;
+                break;
+            default:
+                break;
+        }
+
+        StartCoroutine(ExecuteColorAnim());
+    }
+
+    IEnumerator ExecuteColorAnim()
+    {
+        float timer = 0f;
+
+        while (timer <= colorAnimDuration)
+        {
+            float percentage = Mathf.Clamp((timer / colorAnimDuration), 0, 1);
+            float smoothPercentage = Mathf.SmoothStep(0, 1, percentage);
+
+            Color currentColor = Color.Lerp(startColor, endColor, smoothPercentage);
+            boardBackground.color = currentColor;
+
+            timer += Time.deltaTime;
+
+            yield return null;
+        }
     }
  }
