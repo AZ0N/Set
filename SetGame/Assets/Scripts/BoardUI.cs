@@ -18,7 +18,7 @@ public class BoardUI : MonoBehaviour
     [Header("UI References")]
     public Transform backgroundGridUI;
     public Transform foregroundGridUI;
-    public RectTransform pile;
+    public RectTransform pileLocation;
     public FlexibleGridLayout backgroundGridLayout;
 
     [Header("Animation Options")]
@@ -32,7 +32,6 @@ public class BoardUI : MonoBehaviour
 
     private ColorBlock baseButtonColors = ColorBlock.defaultColorBlock, selectedButtonColors = ColorBlock.defaultColorBlock;
     private int[] selectedCards = new int[]{-1, -1, -1};
-
     private void Awake() 
     {
         if (instance == null)
@@ -71,7 +70,7 @@ public class BoardUI : MonoBehaviour
             GameObject cardObject = Instantiate(cardPrefab, foregroundGridUI);
 
             //Setting initial position and size of cards
-            cardObject.GetComponent<RectTransform>().position = pile.position;
+            cardObject.GetComponent<RectTransform>().position = pileLocation.position;
             cardObject.GetComponent<RectTransform>().sizeDelta = backgroundGridLayout.cellSize;
 
             //Add the CardUI component to the list of cards

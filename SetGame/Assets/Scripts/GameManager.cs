@@ -12,11 +12,9 @@ public class GameManager : MonoBehaviour
     }
 
     [Header("Gameobject References")]
-    public BoardManager boardManager;
     public GameObject boardGameobject;
     public GameObject gameTypeSelection;
     private GameType gameType;
-
     private void Start() 
     {
         boardGameobject.SetActive(false);
@@ -27,15 +25,15 @@ public class GameManager : MonoBehaviour
         gameTypeSelection.SetActive(false);
         boardGameobject.SetActive(true);
 
-        boardManager.SetupGame();
-        BoardUI.instance.PopulateGrid(boardManager.board);
+        BoardManager.instance.SetupGame();
+        BoardUI.instance.PopulateGrid(BoardManager.instance.board);
 
         if(gameType == GameType.SinglePlayer)
             BoardUI.instance.SetButtonInteractable(true);
         else
             BoardUI.instance.SetButtonInteractable(false);
         
-        boardManager.PrintAvailableSets();
+        BoardManager.instance.PrintAvailableSets();
     }
     public void SetGameType(int gameTypeIndex)
     {

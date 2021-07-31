@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
+    public static BoardManager instance;
     public int baseBoardSize = 12;
 
     //CardData lists
@@ -13,6 +14,19 @@ public class BoardManager : MonoBehaviour
 
     private System.Random rng = new System.Random();
 
+    private void Awake() 
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Debug.Log("Instance of BoardManager already exists. Destroying object.");
+            Destroy(this);
+        } 
+    }
+    
     //Set operations
     public bool IsSet(CardData a, CardData b, CardData c)
     {
